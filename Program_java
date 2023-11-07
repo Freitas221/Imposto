@@ -1,0 +1,61 @@
+package Application;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
+import entities.Companhia;
+import entities.Contribuintes;
+import entities.Individual;
+
+public class Program {
+
+	public static void main(String[] args) {
+
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		List<Contribuintes> list = new ArrayList<>();
+
+		System.out.print("Entre com o número de contribuintes: ");
+		int n = sc.nextInt();
+
+		for (int i = 0; i < n; i++) {
+
+			System.out.print("Individual ou Companhia (i / c): ");
+			sc.next();
+			char ch = sc.next().charAt(0);
+
+			if (ch == i) {
+				System.out.print("Nome: ");
+				String name = sc.next();
+				System.out.print("Renda anual");
+				Double rendaAnual = sc.nextDouble();
+				System.out.print("Gastos com saúde: ");
+				double despesasDeSaude = sc.nextDouble();
+				list.add(new Individual(name, rendaAnual, despesasDeSaude));
+
+			}
+
+			else {
+				System.out.print("Nome: ");
+				String name = sc.next();
+				System.out.print("Renda anual");
+				Double rendaAnual = sc.nextDouble();
+				System.out.println("Quantos funcionários a empresa tem: ");
+				int number = sc.nextInt();
+				list.add(new Companhia(name, rendaAnual, number));
+			}
+
+		}
+		System.out.println();
+		System.out.println("IMPOSTOS PAGOS:");
+		
+		for(Contribuintes x : list) {
+			System.out.println (x.getName() + ": " + "$ " + String.format("%.2f", x.imposto()));		
+		}
+
+		sc.close();
+	}
+
+}

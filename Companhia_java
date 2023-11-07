@@ -1,0 +1,36 @@
+package entities;
+
+public class Companhia extends Contribuintes {
+
+	private int numeroDeFuncionarios;
+
+	public Companhia() {
+		super();
+	}
+
+	public Companhia(String name, Double rendaAnual, int numeroDeFuncionarios) {
+		super(name, rendaAnual);
+		this.numeroDeFuncionarios = numeroDeFuncionarios;
+	}
+
+	public int getNumeroDeFuncionarios() {
+		return numeroDeFuncionarios;
+	}
+
+	public void setNumeroDeFuncionarios(int numeroDeFuncionarios) {
+		this.numeroDeFuncionarios = numeroDeFuncionarios;
+	}
+
+	@Override
+	public double imposto() {
+		double impostFuncionarios;
+
+		if (numeroDeFuncionarios <= 10) {
+			impostFuncionarios = 0.16 * getRendaAnual();
+		} else {
+			impostFuncionarios = 0.14 * getRendaAnual();
+		}
+		return impostFuncionarios;
+	}
+
+}

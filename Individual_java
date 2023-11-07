@@ -1,0 +1,39 @@
+package entities;
+
+public class Individual extends Contribuintes {
+
+	private double despesasDeSaude;
+
+	public Individual() {
+		super();
+	}
+
+	public Individual(String name, Double rendaAnual, double despesasDeSaude) {
+		super(name, rendaAnual);
+		this.despesasDeSaude = despesasDeSaude;
+	}
+
+	public double getDespesasDeSaude() {
+		return despesasDeSaude;
+	}
+
+	public void setDespesasDeSaude(double despesasDeSaude) {
+		this.despesasDeSaude = despesasDeSaude;
+	}
+
+	@Override
+	public double imposto() {
+		double impostoBasico; 
+		 if(getRendaAnual() < 20000.0) {		
+			 impostoBasico = (0.15 * getRendaAnual()) - 0.5 * despesasDeSaude;
+		}else {
+			impostoBasico = (0.25 * getRendaAnual()) - 0.5 * despesasDeSaude;
+		}
+		 if(impostoBasico < 0.0) {
+			 return 0.0;
+		 }else {
+			 return impostoBasico;
+		 }
+	}
+	
+}
